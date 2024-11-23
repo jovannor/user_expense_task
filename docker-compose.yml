@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: library/postgres:15-alpine
+    restart: unless-stopped
+    ports:
+      - '5433:5432'
+    env_file:
+      - db.env
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '8000:8000'
+    expose:
+      - 8000
+    command: poetry run gunicorn --chdir project core.wsgi:application --bind 0.0.0.0:8000
+    depends_on:
+      - db
+    env_file:
+      - default.env
+      - db.env
+    entrypoint: /entrypoint.sh
+    volumes:
+      - static-data:/opt/app/static_root
+      - media-data:/opt/app/media_root
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 8687:80
+    depends_on:
+      - app
+    restart: "always"
+    volumes:
+      - static-data:/opt/app/static_root
+      - media-data:/opt/app/media_root
+
+volumes:
+  postgresql-data:
+  static-data:
+  media-data:
