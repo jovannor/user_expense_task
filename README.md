@@ -45,7 +45,7 @@ The documentation includes:
     
 ## Transactions
 
-###Expense
+**Expense**
 - **GET/POST** `/api/v0/users/<user_id>/expense/`  
   List or create an expense for a user.  
   **Filters:**  
@@ -55,7 +55,7 @@ The documentation includes:
 - **GET/PUT/DELETE** `/api/v0/users/<user_id>/expense/<expense_id>/`  
   Retrieve, update, or delete a specific expense.
   
-###Income
+**Income**
 - **GET/POST** `/api/v0/users/<user_id>/income/`  
   List or create an income for a user.  
   **Filters:**  
