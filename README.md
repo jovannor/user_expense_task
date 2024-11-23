@@ -44,6 +44,7 @@ The documentation includes:
   - Dates: `?date_min=YYYY-MM-DD&date_max=YYYY-MM-DD`
     
 ## Transactions
+
 ###Expense
 - **GET/POST** `/api/v0/users/<user_id>/expense/`  
   List or create an expense for a user.  
@@ -53,6 +54,7 @@ The documentation includes:
 
 - **GET/PUT/DELETE** `/api/v0/users/<user_id>/expense/<expense_id>/`  
   Retrieve, update, or delete a specific expense.
+  
 ###Income
 - **GET/POST** `/api/v0/users/<user_id>/income/`  
   List or create an income for a user.  
